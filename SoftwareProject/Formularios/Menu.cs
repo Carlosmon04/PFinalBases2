@@ -20,6 +20,7 @@ namespace SoftwareProject
     {
         private SqlConnection cnx;
         private int userID;
+        private int ClienteID;
         public Menu(SqlConnection conexion, int usuario)
         {
             InitializeComponent();
@@ -39,6 +40,40 @@ namespace SoftwareProject
             subMenuS.Visible = false;
             subMenuP.Visible = false;
             subMenuFinanza.Visible = false;
+        }
+
+        private void RecuperarClienteID()
+        {
+            try
+            {
+                if (cnx.State == System.Data.ConnectionState.Closed)
+                {
+                    cnx.Open();
+                }
+
+                SqlCommand command = new SqlCommand("SELECT dbo.RecuperarClienteID(@UserID) AS ClienteID", cnx);
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    if (!reader.IsDBNull(reader.GetOrdinal("ClienteID")))
+                    {
+                        int clienteID = reader.GetInt32(reader.GetOrdinal("ClienteID"));
+                    }
+                    else
+                    {
+                        MessageBox.Show("ClienteID es nulo o no se encontró.");
+                    }
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al recuperar ClienteID: " + ex.Message);
+            }
         }
 
         private void Ocultar()
@@ -230,7 +265,7 @@ namespace SoftwareProject
 
         private void btnInfoP_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new VerPaquetes(cnx));
+            OpenChildForm(new VerPaquetes(cnx,userID));
             Ocultar();
         }
 

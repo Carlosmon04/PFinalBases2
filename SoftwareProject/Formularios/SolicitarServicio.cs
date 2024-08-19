@@ -38,7 +38,8 @@ namespace SoftwareProject.Formularios
 
             try
             {
-                TabServicios = new DataTable();
+                 TabServicios = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter("spServiciosVer",cnx);
                 SqlDataAdapter adapter = new SqlDataAdapter("spServiciosVer", cnx);
                 adapter.Fill(TabServicios);
                 dataGridView1.DataSource = TabServicios;
@@ -48,6 +49,7 @@ namespace SoftwareProject.Formularios
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dataGridView1.AllowUserToAddRows = false;
                 dataGridView1.AllowUserToResizeRows = false;
+                dataGridView1.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.AllCells;
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             }
@@ -65,6 +67,8 @@ namespace SoftwareProject.Formularios
                 Visita = new DateTime();
                 if (dataGridView1.Rows.Count > 0)
                 {
+                    int servicioID = (int)TabServicios.DefaultView[dataGridView1.CurrentRow.Index]["SerciciosId"];
+                    Console.WriteLine(servicioID);
                     ServicioID = (int)TabServicios.DefaultView[dataGridView1.CurrentRow.Index]["SerciciosId"];
                     if (MessageBox.Show("Seguro que quieres solicitar este servicio? ", "???", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {

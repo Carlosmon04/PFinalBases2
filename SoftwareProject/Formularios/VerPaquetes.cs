@@ -16,11 +16,14 @@ namespace SoftwareProject.Formularios
     {
         SqlConnection cnx;
         DataTable TabPaquetes;
+        int UsuarioID;
+        int clienteID;
 
-        public VerPaquetes(SqlConnection conexion)
+        public VerPaquetes(SqlConnection conexion, int usuarioID)
         {
             InitializeComponent();
             cnx = conexion;
+            UsuarioID = usuarioID;
         }
 
         private void VerPaquetes_Load(object sender, EventArgs e)
@@ -35,10 +38,45 @@ namespace SoftwareProject.Formularios
                 dataGridView1.AllowUserToAddRows = false;
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dataGridView1.ScrollBars = ScrollBars.Both;
+                RecuperarClienteID();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ocurrio un Error" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RecuperarClienteID()
+        {
+            try
+            {
+                // Crear el comando SQL
+                SqlCommand command = new SqlCommand("SELECT dbo.RecuperarClienteID(@UserID) AS ClienteID", cnx);
+                command.Parameters.AddWithValue("@UserID", UsuarioID);
+
+                // Ejecutar el comando y obtener el SqlDataReader
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // Verificar si el valor recuperado no es nulo antes de intentar leerlo
+                    if (!reader.IsDBNull(reader.GetOrdinal("ClienteID")))
+                    {
+                        clienteID = reader.GetInt32(reader.GetOrdinal("ClienteID"));
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("ClienteID es nulo o no se encontró.");
+                    }
+                }
+
+                // Cerrar el SqlDataReader
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al recuperar ClienteID: " + ex.Message);
             }
         }
 
@@ -78,7 +116,7 @@ namespace SoftwareProject.Formularios
                     // Verifica si el formulario 'form1' no es nulo antes de usarlo
                     if (form1 != null)
                     {
-                        form1.OpenChildForm(new Paquetes(cnx, paqueteId, nombre, precio, horas));
+                        form1.OpenChildForm(new Paquetes(cnx,clienteID, paqueteId, nombre, precio, horas));
                     }
                 }
                 catch (Exception ex)
