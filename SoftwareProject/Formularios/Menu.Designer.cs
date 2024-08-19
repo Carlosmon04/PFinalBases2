@@ -56,6 +56,7 @@
             this.btnInfoEmpleado = new System.Windows.Forms.Button();
             this.btnAggEmpleado = new System.Windows.Forms.Button();
             this.btnEmpleados = new System.Windows.Forms.Button();
+            this.panelLogo = new System.Windows.Forms.Panel();
             this.panelForms = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.LateralMenu.SuspendLayout();
@@ -86,6 +87,7 @@
             this.LateralMenu.Controls.Add(this.btnClientes);
             this.LateralMenu.Controls.Add(this.subMenuEmpleado);
             this.LateralMenu.Controls.Add(this.btnEmpleados);
+            this.LateralMenu.Controls.Add(this.panelLogo);
             this.LateralMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.LateralMenu.Location = new System.Drawing.Point(0, 0);
             this.LateralMenu.Name = "LateralMenu";
@@ -479,6 +481,14 @@
             this.btnEmpleados.UseVisualStyleBackColor = true;
             this.btnEmpleados.Click += new System.EventHandler(this.btnUser_Click);
             // 
+            // panelLogo
+            // 
+            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelLogo.Location = new System.Drawing.Point(0, 0);
+            this.panelLogo.Name = "panelLogo";
+            this.panelLogo.Size = new System.Drawing.Size(264, 112);
+            this.panelLogo.TabIndex = 1;
+            // 
             // panelForms
             // 
             this.panelForms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -507,7 +517,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1347, 705);
             this.Controls.Add(this.panelForms);
             this.Controls.Add(this.LateralMenu);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -535,6 +544,7 @@
 
         private System.Windows.Forms.Panel LateralMenu;
         private System.Windows.Forms.Button btnEmpleados;
+        private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Panel subMenuEmpleado;
         private System.Windows.Forms.Button btnInfoEmpleado;
         private System.Windows.Forms.Button btnAggEmpleado;

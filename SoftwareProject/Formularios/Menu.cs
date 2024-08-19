@@ -25,7 +25,7 @@ namespace SoftwareProject
         {
             InitializeComponent();
             Design();
-            cnx= conexion;
+           cnx= conexion;
             userID = usuario;
         }
 
@@ -106,7 +106,7 @@ namespace SoftwareProject
             if (subMenuFinanza.Visible == true)
             {
                 subMenuFinanza.Visible = false;
-            }
+        }
 
 
         }
@@ -242,7 +242,7 @@ namespace SoftwareProject
 
         private void btnAgregarS_Click(object sender, EventArgs e)
         {
-            //OpenChildForm(new El formulario que van a llamar por ejemplo infoPaquetes(cnx));
+            OpenChildForm(new CrearServicios(cnx, userID));
             Ocultar();
         }
 
@@ -259,7 +259,7 @@ namespace SoftwareProject
 
         private void btnAgregarP_Click(object sender, EventArgs e)
         {
-           
+            OpenChildForm(new Paquetes(cnx, userID));
             Ocultar();
         }
 

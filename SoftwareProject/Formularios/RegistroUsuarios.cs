@@ -41,8 +41,8 @@ namespace SoftwareProject.Formularios
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            
-            if (UsuarioExiste(txtUsername.Text))
+            ValidacionesClientes();
+            if (UsuarioExiste(txtNombre.Text))
             {
                 MessageBox.Show("El usuario que desea registrar ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -108,7 +108,7 @@ namespace SoftwareProject.Formularios
 
                 cmd.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
                
-                    existe = (bool)cmd.ExecuteScalar();
+                existe = (bool)cmd.ExecuteScalar();
             
             }
             catch (Exception ex)
@@ -170,7 +170,7 @@ namespace SoftwareProject.Formularios
                 MessageBox.Show("El DNI debe contener 15 caracteres de la siguiente forma 0000-0000-00000", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop);
                 CONTINUAR = false;
             }
-            if (txtTelefono.Text.Length <= 8 || !System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d+$"))
+            if (txtTelefono.Text.Length < 8 || !System.Text.RegularExpressions.Regex.IsMatch(txtTelefono.Text, @"^\d+$"))
             {
                 MessageBox.Show("Debe INgresar valores correctos y un numero adecuado para Telefono", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop);
                 CONTINUAR = false;

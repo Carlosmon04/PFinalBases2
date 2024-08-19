@@ -111,20 +111,20 @@ namespace SoftwareProject.Formularios
             bool acceso = false;
             try
             {
-                SqlCommand cmd = new SqlCommand("spUsuarios", cnx);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Nombre", txtUsuario.Text);
-                cmd.Parameters.AddWithValue("@Pass", txtPassword.Text);
-                SqlDataReader reader = cmd.ExecuteReader();
+            SqlCommand cmd = new SqlCommand("spUsuarios", cnx);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Nombre", txtUsuario.Text);
+            cmd.Parameters.AddWithValue("@Pass", txtPassword.Text);
+            SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.Read()) { 
                     if (reader.HasRows && reader["Estado"].ToString() != "I")
-                    {
-                        acceso = true;
-                        reader.Close();
-                        cmd.Dispose();
-                        return acceso;
-                    }
+            {
+                acceso = true;
+                    reader.Close();
+                    cmd.Dispose();
+                    return acceso;      
+            }
             }
             else { acceso = false; reader.Close();cmd.Dispose(); }
             return acceso;

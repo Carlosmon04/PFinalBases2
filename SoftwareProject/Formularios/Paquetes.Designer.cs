@@ -28,6 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.servicio3 = new System.Windows.Forms.Label();
+            this.servicio2 = new System.Windows.Forms.Label();
+            this.Servicio1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.Servicio4 = new System.Windows.Forms.Label();
+            this.Servicio5 = new System.Windows.Forms.Label();
+            this.Servicio6 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.Servicio7 = new System.Windows.Forms.Label();
+            this.Servicio8 = new System.Windows.Forms.Label();
+            this.Servicio9 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelLabels = new System.Windows.Forms.Panel();
             this.txtNombre = new System.Windows.Forms.Label();
@@ -170,6 +183,10 @@
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.panelLabels);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Name = "Paquetes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Paquetes";
@@ -185,6 +202,11 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panelLabels;
         private System.Windows.Forms.PictureBox pictureBox1;
